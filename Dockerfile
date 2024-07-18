@@ -13,6 +13,7 @@ COPY . /mmtt
 
 # Install Jekyll
 RUN gem install jekyll
+RUN bundle exec jekyll build
 
 # Expose the port that Jekyll will serve on
 EXPOSE 4000
