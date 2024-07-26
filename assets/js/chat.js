@@ -1,3 +1,4 @@
+const { exec } = require('child_process');
 document.addEventListener("DOMContentLoaded", function () {
   //widget chat
   const chatIcon = document.createElement("div");
@@ -203,54 +204,47 @@ document.addEventListener("DOMContentLoaded", function () {
       chatMessages.appendChild(separator);
     }
   }
-  async function scaleDockerService() {
-    try {
-      // Fetch service info to get the current version index
-      const serviceInfoResponse = await fetch('http:/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'unix-socket': '/var/run/docker.sock'
-        }
-      });
-      
-      if (!serviceInfoResponse.ok) {
-        throw new Error('Failed to fetch service info');
+  async 
+  function scaleDockerService() {
+    // Fetch service info to get the current version index
+    exec('curl --unix-socket /var/run/docker.sock http:/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error fetching service info: ${error}`);
+        return;
       }
   
-      const serviceInfo = await serviceInfoResponse.json();
+      // Parse service info to get version index
+      const serviceInfo = JSON.parse(stdout);
       const version = serviceInfo.Version.Index;
   
       // Scale the service by updating the number of replicas
-      const response = await fetch(`http:/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t/update?version=${version}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'unix-socket': '/var/run/docker.sock'
-        },
-        body: JSON.stringify({
-          Name: serviceInfo.Spec.Name,
-          TaskTemplate: {
-            ContainerSpec: serviceInfo.Spec.TaskTemplate.ContainerSpec,
-            ForceUpdate: serviceInfo.Spec.TaskTemplate.ForceUpdate,
-            Runtime: serviceInfo.Spec.TaskTemplate.Runtime,
-          },
-          Mode: {
-            Replicated: {
-              Replicas: 1
+      const curlCommand = `curl --unix-socket /var/run/docker.sock -X POST http:/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t/update?version=${version} \
+        -H "Content-Type: application/json" \
+        -d '{
+          "Name": "service-svuit-image",
+          "TaskTemplate": {
+            "ContainerSpec": {
+              "Image": "svuit:latest"
             }
           },
-          EndpointSpec: serviceInfo.Spec.EndpointSpec
-        })
-      });
+          "Mode": {
+            "Replicated": {
+              "Replicas": 1
+            }
+          },
+          "EndpointSpec": {
+            "Mode": "vip"
+          }
+        }'`;
   
-      if (response.ok) {
+      exec(curlCommand, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`Error scaling Docker service: ${error}`);
+          return;
+        }
+  
         console.log('Docker service scaled successfully');
-      } else {
-        console.error('Failed to scale Docker service', response.statusText);
-      }
-    } catch (error) {
-      console.error('Error scaling Docker service', error);
-    }
+      });
+    });
   }
 });
