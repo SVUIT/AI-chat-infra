@@ -206,10 +206,11 @@ document.addEventListener("DOMContentLoaded", function () {
   async function scaleDockerService() {
     try {
       // Fetch service info to get the current version index
-      const serviceInfoResponse = await fetch('http://localhost/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t', {
+      const serviceInfoResponse = await fetch('http:/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'unix-socket': '/var/run/docker.sock'
         }
       });
       
@@ -221,15 +222,25 @@ document.addEventListener("DOMContentLoaded", function () {
       const version = serviceInfo.Version.Index;
   
       // Scale the service by updating the number of replicas
-      const response = await fetch(`http://localhost/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t/update?version=${version}`, {
+      const response = await fetch(`http:/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t/update?version=${version}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'unix-socket': '/var/run/docker.sock'
         },
         body: JSON.stringify({
+          Name: serviceInfo.Spec.Name,
           TaskTemplate: {
-            Replicas: 1
-          }
+            ContainerSpec: serviceInfo.Spec.TaskTemplate.ContainerSpec,
+            ForceUpdate: serviceInfo.Spec.TaskTemplate.ForceUpdate,
+            Runtime: serviceInfo.Spec.TaskTemplate.Runtime,
+          },
+          Mode: {
+            Replicated: {
+              Replicas: 1
+            }
+          },
+          EndpointSpec: serviceInfo.Spec.EndpointSpec
         })
       });
   
@@ -242,5 +253,4 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error('Error scaling Docker service', error);
     }
   }
-  
 });
