@@ -206,14 +206,13 @@ document.addEventListener("DOMContentLoaded", function () {
   async function scaleDockerService() {
     try {
       // Fetch service info to get the current version index
-      const serviceInfoResponse = await fetch('http:/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t', {
+      const serviceInfoResponse = await fetch('http://localhost:2375/v1.41/services/r9gbzjsmunpc4wrq17au9yb9t', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
-          'unix-socket': '/var/run/docker.sock'
+          'Content-Type': 'application/json'
         }
       });
-      
+  
       if (!serviceInfoResponse.ok) {
         throw new Error('Failed to fetch service info');
       }
@@ -222,11 +221,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const version = serviceInfo.Version.Index;
   
       // Scale the service by updating the number of replicas
-      const response = await fetch(`http:/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t/update?version=${version}`, {
+      const response = await fetch(`http://localhost:2375/v1.41/services/r9gbzjsmunpc4wrq17au9yb9t/update?version=${version}`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'unix-socket': '/var/run/docker.sock'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           Name: serviceInfo.Spec.Name,
@@ -253,4 +251,5 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error('Error scaling Docker service', error);
     }
   }
+  
 });
