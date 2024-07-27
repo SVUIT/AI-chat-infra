@@ -1,4 +1,3 @@
-const { exec } = require('child_process');
 document.addEventListener("DOMContentLoaded", function () {
   //widget chat
   const chatIcon = document.createElement("div");
@@ -204,47 +203,54 @@ document.addEventListener("DOMContentLoaded", function () {
       chatMessages.appendChild(separator);
     }
   }
-  async 
-  function scaleDockerService() {
-    // Fetch service info to get the current version index
-    exec('curl --unix-socket /var/run/docker.sock http:/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t', (error, stdout, stderr) => {
-      if (error) {
-        console.error(`Error fetching service info: ${error}`);
-        return;
+  async function scaleDockerService() {
+    try {
+      // Fetch service info to get the current version index
+      const response = await fetch('http://localhost/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const request2 = response.clone();
+      if (!resquest2.ok) {
+        throw new Error('Network response was not ok');
       }
   
-      // Parse service info to get version index
-      const serviceInfo = JSON.parse(stdout);
+      const serviceInfo = await response.json();
       const version = serviceInfo.Version.Index;
   
       // Scale the service by updating the number of replicas
-      const curlCommand = `curl --unix-socket /var/run/docker.sock -X POST http:/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t/update?version=${version} \
-        -H "Content-Type: application/json" \
-        -d '{
-          "Name": "service-svuit-image",
-          "TaskTemplate": {
-            "ContainerSpec": {
-              "Image": "svuit:latest"
-            }
+      const updateResponse = await fetch(`http://localhost/v1.45/services/1j0hr7u99lnp /update?version=${version}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          Name: "service-svuit-image",
+          TaskTemplate: {
+            ContainerSpec: {
+              Image: "svuit:latest",
+            },
           },
-          "Mode": {
-            "Replicated": {
-              "Replicas": 1
-            }
+          Mode: {
+            Replicated: {
+              Replicas: 1,
+            },
           },
-          "EndpointSpec": {
-            "Mode": "vip"
-          }
-        }'`;
-  
-      exec(curlCommand, (error, stdout, stderr) => {
-        if (error) {
-          console.error(`Error scaling Docker service: ${error}`);
-          return;
-        }
-  
-        console.log('Docker service scaled successfully');
+          EndpointSpec: {
+            Mode: "vip",
+          },
+        }),
       });
-    });
-  }
+  
+      if (!updateResponse.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      console.log('Docker service scaled successfully');
+    } catch (error) {
+      console.error(`Error scaling Docker service: ${error}`);
+    }
+  }  
 });
