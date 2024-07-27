@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function scaleDockerService() {
     try {
       // Fetch service info to get the current version index
-      const serviceInfoResponse = await fetch('http://localhost:2375/v1.41/services/r9gbzjsmunpc4wrq17au9yb9t', {
+      const serviceInfoResponse = await fetch('http://34.143.174.184:2375/v1.41/services/r9gbzjsmunpc4wrq17au9yb9t', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const version = serviceInfo.Version.Index;
   
       // Scale the service by updating the number of replicas
-      const response = await fetch(`http://localhost:2375/v1.41/services/r9gbzjsmunpc4wrq17au9yb9t/update?version=${version}`, {
+      const response = await fetch(`http://34.143.174.184:2375/v1.41/services/r9gbzjsmunpc4wrq17au9yb9t/update?version=${version}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
