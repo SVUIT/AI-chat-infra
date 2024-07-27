@@ -206,51 +206,51 @@ document.addEventListener("DOMContentLoaded", function () {
   async function scaleDockerService() {
     try {
       // Fetch service info to get the current version index
-      const response = await fetch('http://localhost/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t', {
+      const serviceInfoResponse = await fetch('http:/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-        },
+          'unix-socket': '/var/run/docker.sock'
+        }
       });
-      const request2 = response.clone();
-      if (!resquest2.ok) {
-        throw new Error('Network response was not ok');
+      
+      if (!serviceInfoResponse.ok) {
+        throw new Error('Failed to fetch service info');
       }
   
-      const serviceInfo = await response.json();
+      const serviceInfo = await serviceInfoResponse.json();
       const version = serviceInfo.Version.Index;
   
       // Scale the service by updating the number of replicas
-      const updateResponse = await fetch(`http://localhost/v1.45/services/1j0hr7u99lnp /update?version=${version}`, {
+      const response = await fetch(`http:/v1.45/services/r9gbzjsmunpc4wrq17au9yb9t/update?version=${version}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'unix-socket': '/var/run/docker.sock'
         },
         body: JSON.stringify({
-          Name: "service-svuit-image",
+          Name: serviceInfo.Spec.Name,
           TaskTemplate: {
-            ContainerSpec: {
-              Image: "svuit:latest",
-            },
+            ContainerSpec: serviceInfo.Spec.TaskTemplate.ContainerSpec,
+            ForceUpdate: serviceInfo.Spec.TaskTemplate.ForceUpdate,
+            Runtime: serviceInfo.Spec.TaskTemplate.Runtime,
           },
           Mode: {
             Replicated: {
-              Replicas: 1,
-            },
+              Replicas: 1
+            }
           },
-          EndpointSpec: {
-            Mode: "vip",
-          },
-        }),
+          EndpointSpec: serviceInfo.Spec.EndpointSpec
+        })
       });
   
-      if (!updateResponse.ok) {
-        throw new Error('Network response was not ok');
+      if (response.ok) {
+        console.log('Docker service scaled successfully');
+      } else {
+        console.error('Failed to scale Docker service', response.statusText);
       }
-  
-      console.log('Docker service scaled successfully');
     } catch (error) {
-      console.error(`Error scaling Docker service: ${error}`);
+      console.error('Error scaling Docker service', error);
     }
-  }  
+  }
 });
