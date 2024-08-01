@@ -1,49 +1,48 @@
+--- 
+layout: default 
+title: Course project 
+parent: Templates 
 ---
-layout: default
-title: Đồ án môn học
-parent: Templates
----
+## Templates 
 
-## Các mẫu Template
+### Vietnamese Word File
 
-### File Word bản tiếng Việt
+[Download](https://github.com/SVUIT/report-templates/blob /main/Templates/Template_Do_An_Mon_Hoc_VN.docx){:target="_blank": .btn .btn-primary .btn-download .fs-5 .mb-4 .mb-md-0 } 
 
-[Download](https://github.com/SVUIT/report-templates/blob/main/Templates/Template_Do_An_Mon_Hoc_VN.docx){:target="_blank": .btn .btn-primary .btn-download .fs-5 .mb-4 .mb-md-0 }
-
-### File Word bản tiếng Anh
+### English Word File
 
 [Download](https://github.com/SVUIT/report-templates/blob/main/Templates/Template_Do_An_Mon_Hoc_EN.docx){:target="_blank" : .btn .btn-primary .btn-download .fs-5 .mb-4 .mb-md-0 }
 
-## Hướng dẫn sử dụng Template đồ án môn học
+## Instructions for using the Subject Project Template
 
-### Định dạng chung
+### General Format
 
-- Font chữ: Times New Roman.
-- Cỡ chữ nội dung thường: 13
-- Căn giữa (center) đối với chương (Heading 1), hình ảnh và bảng biểu.
-- Căn lề đều (justify) đối với các phần nội dung còn lại.
+- Font: Times New Roman.
+- Normal content font size: 13
+- Center for chapters (Heading 1), images and tables.
+- Justify the rest of the content.
 
 ### Format heading
 
-- Bôi đen dòng text muốn sử dụng.
-- Sau đó, chọn kiểu tiêu đề muốn áp dụng từ thanh công cụ (đi tới trang Home phần Styles để chọn kiểu mình muốn).
-- Trong đó:
-    - Heading 1 dành cho đặt tên các chương (cỡ chữ 16).
-    - Heading 2 dành cho đề mục của chương (cỡ chữ 15).
-    - Heading 3 dành cho tiểu mục của đề mục (cỡ chữ 14).
-    - Normal dành cho nội dung thường.
+- Highlight the text you want to use.
+- Then, select the heading style you want to apply from the toolbar ( Go to the Home page, Styles section to choose the style you want).
+- In which:
+  - Heading 1 is for naming chapters (font size 16).
+  - Heading 2 is for chapter titles (font size 15).
+  - Heading 3 for sub-headings of headings (font size 14).
+  - Normal for normal content.
 
-### Update bảng mục lục
+### Update table of contents
 
-- Chọn bảng mục lục.
-- Đi tới **References** chọn **Update Table**.
-- Ở đây có 2 lựa chọn cho mọi người: "Cập nhật mục lục" hoặc "Cập nhật tất cả".
+- Select table of contents.
+- Go to **References** and select **Update Table**.
+- There are 2 options for everyone here: "Update table of contents" or "Update all".
 
-> Khuyến khích update bảng mục lục sau cùng, khi đã hoàn tất các nội dung khác trong văn bản báo cáo.
-{: .note }
+> It is recommended to update the table of contents last, when you have completed other contents in the report text.
+{: .note}
 
-### Thêm caption cho ảnh
+### Add caption to image
 
-- Nhấn chuột phải vào hình ảnh mà bạn cần thêm chú thích.
-- Chọn **Insert Caption**. Sau đó, nhấn chọn OK.
-- Bên dưới ảnh bạn cần thêm chú thích sẽ xuất hiện dòng chữ để bạn đặt chú thích, nhập xong bạn có thể định dạng theo ý của mình.
+- Right click on the image you need to add caption.
+- Select **Insert Caption**. Then, click OK.
+- Below the image you need to add caption A line of text will appear for you to put a note on, after entering it you can format it as you like.

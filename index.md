@@ -8,22 +8,20 @@ nav_order: 0
 
 {: .fs-9 }
 
-Kho tài liệu học tập UIT, phiên bản Mạng máy tính và Truyền thông
+UIT Study Document Vault, Computer Networks and Communications Edition
 
 {: .fs-6 .fw-300 }
 
-[Đóng góp cho website](./docs/contribute){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[Xem trên GitHub](https://github.com/SVUIT/mmtt){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Contribute to the website](./docs/contribute){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[View on GitHub](https://github.com/SVUIT/mmtt){: .btn .fs-5 .mb-4 .mb-md-0 }
 
+## Objectives
 
+The main objective of the project is to help students easily find information and documents about the subject, especially to be able to refer to real projects by previous students. We aim for students of all courses to be able to transfer and share knowledge with each other through this platform.
 
-## Mục tiêu
+Due to limited human resources, we currently only focus on documents of the Faculty of MMT&TT in general, and the MMT&TTDL industry in particular.
 
-Mục tiêu chính của dự án là giúp các bạn sinh viên dễ dàng tìm kiếm các thông tin và tài liệu về môn học, đặc biệt là có thể tham khảo đồ án thực hiện bởi các sinh viên khóa trước. Chúng mình hướng tới việc sinh viên các khóa có thể truyền tải, chia sẻ kiến thức cho nhau thông qua nền tảng này.
+## Note
 
-Do nhân lực có hạn nên hiện tại chúng mình chỉ tập trung vào tài liệu của khoa MMT&TT nói chung, ngành MMT&TTDL nói riêng.
-
-## Lưu ý
-
-- Website này là một dự án phi lợi nhuận được thực hiện bởi một nhóm sinh viên và không phải là website chính thức của UIT.
-- Các nội dung được đăng tải trên đây chỉ mang tính chất **tham khảo** và không hoàn toàn chính xác. Chúng mình luôn khuyến khích các bạn tự đánh giá và chọn lọc thông tin.
+- This website is a non-profit project carried out by a group of students and is not the official website of UIT.
+- The content posted here is for **reference** only and is not entirely accurate. We always encourage you to evaluate and select information yourself.

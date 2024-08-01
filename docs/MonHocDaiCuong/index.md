@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Môn học đại cương
+title: General subjects
 nav_order: 5
 has_children: true
 ---
 
-# Môn học đại cương
+# General subjects
 
-Các môn học đại cương được thiết kế nhằm trang bị cho sinh viên nền học vấn rộng để tiếp thu tốt kiến thức chuyên môn và tạo nền tảng cho người học dễ dàng thích nghi với môi trường.
+General subjects are designed to equip students with a broad academic background to acquire specialized knowledge well and create a foundation for learners to easily adapt to the environment.
 
-Sinh viên bắt buộc phải hoàn thành **tất cả** các môn học đại cương trong chương trình đào tạo của mình.
+Students are required to complete **all** general subjects in their training program.

@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Môn học tự chọn
+title: Elective subjects
 nav_order: 4
 has_children: true
 ---
 
-# Môn học tự chọn
+# Elective subjects
 
-Sinh viên ngành MMT&TTDL cần phải học tối thiểu **9 tín chỉ** đối với các môn học tự chọn (K16) hoặc **8 tín chỉ** (K17-K18). Các môn học tự chọn có thể học theo danh sách đề xuất của khoa hoặc tự đăng ký ở các khoa khác theo quy định (môn học tự chọn tự do).
+Students of MMT&TTDL major must study at least **9 credits** for elective subjects (K16) or **8 credits** (K17-K18). Elective subjects can be studied according to the faculty's suggested list or self-registered at other faculties according to regulations (free elective subjects).
 
-Đối với các học phần tự chọn, nếu điểm dưới 5,0 sinh viên được phép đăng ký học lại học phần đó hoặc chọn học phần khác thay thế trong số các học phần tự chọn quy định cho mỗi ngành đào tạo. 
+For elective subjects, if the score is below 5.0, students are allowed to re-register for that subject or choose another subject to replace it among the elective subjects prescribed for each training major.

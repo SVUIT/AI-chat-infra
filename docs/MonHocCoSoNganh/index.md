@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Môn học cơ sở ngành
+title: Basic subjects
 nav_order: 2
 has_children: true
 ---
 
-# Môn học cơ sở ngành
+# Basic subjects
 
-Các môn học cơ sở ngành thuộc khối kiến thức giáo dục chuyên nghiệp nhằm cung cấp cho người học những kiến thức và kỹ năng nghề nghiệp cần thiết.
+Basic subjects in the professional education knowledge block aim to provide learners with necessary professional knowledge and skills.
 
-Sinh viên bắt buộc phải hoàn thành **tất cả** các môn học cơ sở ngành trong chương trình đào tạo của mình.
+Students are required to complete **all** basic subjects in their training program.
