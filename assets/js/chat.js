@@ -400,6 +400,10 @@ chatbox.style = `
         adjustChatboxHeight();
       }
     });
+
+    chatInput.addEventListener('focus', function () {
+      adjustChatboxHeight();
+    });
   });
 
 
