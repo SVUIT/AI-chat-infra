@@ -1,38 +1,38 @@
 ---
 layout: default
-title: Đóng góp
+title: Contribute
 nav_exclude: true
 search_exclude: true
 ---
 
-# Đóng góp cho website
+# Contribute to the website
 
-## Tài liệu học tập
+## Study materials
 
-Nếu bạn muốn chia sẻ tài liệu học tập với chúng mình, hãy truy cập vào Form bên dưới:
+If you want to share study materials with us, please access the Form below:
 
 [Form](https://link.svuit.org/submit){:target="_blank" : .btn .btn-primary .btn-form .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
-Nếu các bạn có thắc mắc gì khác liên hệ chúng mình thông qua địa chỉ email **contact@svuit.org**
+If you have any other questions, please contact us via email address **contact@svuit.org**
 
-## Nội dung trên web
+## Content on the website
 
-Nếu có nội dung nào đó trên web chưa được đề cập về môn học hoặc bạn cảm thấy phần nội dung nào đó chưa đúng:
+If there is any content on the website that has not been mentioned about the subject or you feel that some content is incorrect:
 
-- Liên hệ qua email hoặc tạo **Issue** như đã nêu ở mục [Tài liệu học tập](#tài-liệu-học-tập).
-- Fork repo GitHub của chúng mình về và trực tiếp thêm chỉnh sửa của bạn vào, sau đó tạo một **Pull request** trên repo chính này.
+- Contact via email or create **Issue** as stated in the [Study materials [#study-materials].
+- Fork our GitHub repo and add your edits directly, then create a **Pull request** on this main repo.
 
-## Danh sách contributors
+## List of contributors
 
-- Tống Võ Anh Thuận, MMCL2021
-- Lê Huỳnh Quang Vũ, MMCL2021
-- Trần Công Hải, MMCL2021
-- Nguyễn Đăng Tố, MMCL2021
-- Lê Đình Trí, MMTT2021
-- Trần Mai Hân, MMTT2021
+- Tong Vo Anh Thuan, MMCL2021
+- Le Huynh Quang Vu, MMCL2021
+- Tran Cong Hai, MMCL2021
+- Nguyen Dang To, MMCL2021
+- Le Dinh Tri, MMTT2021
+- Tran Mai Han, MMTT2021
 - [quocanuit, GitHub](https://github.com/SVUIT/mmtt/issues/30)
 - [NGODAT0103, GitHub](https://github.com/SVUIT/mmtt/issues/31)
-- Đặng Chí Thành, MMTT2022.3
-- Nguyễn Hoàng Lộc, MMTT2023.2
+- Dang Chi Thanh, MMTT2022.3
+- Nguyen Hoang Loc, MMTT2023.2
 
-Và những bạn đóng góp ẩn danh.
+And anonymous contributors.

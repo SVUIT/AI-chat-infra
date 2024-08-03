@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Môn học chuyên ngành
+title: Major subjects
 nav_order: 1
 has_children: true
 ---
 
-# Môn học chuyên ngành
+# Major Subjects
 
-Các môn học chuyên ngành thuộc khối kiến thức giáo dục chuyên nghiệp nhằm cung cấp cho người học những kiến thức và kỹ năng nghề nghiệp cần thiết.
+Major subjects belong to the professional education knowledge block to provide learners with necessary professional knowledge and skills.
 
-Sinh viên ngành MMT&TTDL cần phải học tối thiểu **12 tín chỉ** đối với các môn học chuyên ngành.
+Students majoring in MMT&TTDL need to study at least **12 credits** for major subjects.
