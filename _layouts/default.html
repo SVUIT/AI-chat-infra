@@ -8,6 +8,24 @@ layout: table_wrappers
 {% include head.html %}
 <head>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      const socket = io('http://localhost:4000');
+
+      socket.on('connect', () => {
+        console.log('Connected:', socket.id);
+      });
+
+      window.addEventListener('beforeunload', () => {
+        // Gửi tín hiệu đến server
+        socket.emit('user_disconnected', {
+          userId: 'your_user_id', // Thay thế bằng userId thực tế
+          socketId: socket.id
+        });
+      });
+    });
+  </script>
 </head>
 <body>
   <a class="skip-to-main" href="#main-content">Skip to main content</a>

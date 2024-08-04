@@ -144,7 +144,7 @@ chatbox.style = `
   
     // Add a note to the chatbox #FFFFCC
     const note = document.createElement('div');
-    note.innerText = 'This is a custom LLM for answering questions about Docker. Answers are based on the contents of the documentation. This feature is experimental - rate the answers to let us know what you think!';
+    note.innerText = 'This is a custom LLM for answering questions about SVUIT - MMTT. Answers are based on the contents of the documentation.';
     note.style = `
       background-color: #FFFFCC;
       color: #000;
@@ -191,7 +191,7 @@ chatbox.style = `
       box-sizing: border-box;
     `;
     chatInputWrapper.appendChild(chatInput);
-    chatInput.placeholder = 'Ask AI';
+    chatInput.placeholder = 'Ask me a question';
   
     // Create chat button
     const chatButton = document.createElement('button');
@@ -406,6 +406,20 @@ chatbox.style = `
     });
   });
 
+//Use Socket.io for listen user close tab
+const socket = io();
 
+socket.on('connect', () => {
+  console.log('Connected:', socket.id);
+});
+
+window.addEventListener('beforeunload', () => {
+  // Gửi tín hiệu đến server
+  socket.emit('user_disconnected', {
+  userId: 'your_user_id', // Thay thế bằng userId thực tế
+  socketId: socket.id
+  });
+});
+  
 
 
