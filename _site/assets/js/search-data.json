@@ -1287,15 +1287,15 @@
     
     "relUrl": "/docs/Templates/doanmonhoc.html"
   },"184": {
-    "doc": "Major subjects",
-    "title": "Major Subjects",
-    "content": "Major subjects belong to the professional education knowledge block to provide learners with necessary professional knowledge and skills. Students majoring in MMT&amp;TTDL need to study at least 12 credits for major subjects. ",
-    "url": "/docs/MonHocChuyenNganh/#major-subjects",
+    "doc": "Specialized subjects",
+    "title": "Specialized Subjects",
+    "content": "Specialized subjects belong to the professional education knowledge block to provide learners with necessary professional knowledge and skills. Students majoring in MMT&amp;TTDL need to study at least 12 credits for Specialized subjects. ",
+    "url": "/docs/MonHocChuyenNganh/#specialized-subjects",
     
-    "relUrl": "/docs/MonHocChuyenNganh/#major-subjects"
+    "relUrl": "/docs/MonHocChuyenNganh/#specialized-subjects"
   },"185": {
-    "doc": "Major subjects",
-    "title": "Major subjects",
+    "doc": "Specialized subjects",
+    "title": "Specialized subjects",
     "content": " ",
     "url": "/docs/MonHocChuyenNganh/",
     
@@ -1331,14 +1331,14 @@
   },"190": {
     "doc": "Home",
     "title": "Study Vault of UIT - MMTT Edition",
-    "content": "UIT Study Document Vault, Computer Networks and Communications Edition . Contribute to the website View on GitHub . ",
+    "content": "UIT Study Vault, Computer Networks and Communications Edition . Contribute to the website View on GitHub . ",
     "url": "/#study-vault-of-uit---mmtt-edition",
     
     "relUrl": "/#study-vault-of-uit---mmtt-edition"
   },"191": {
     "doc": "Home",
     "title": "Objectives",
-    "content": "The main objective of the project is to help students easily find information and documents about the subject, especially to be able to refer to real projects by previous students. We aim for students of all courses to be able to transfer and share knowledge with each other through this platform. Due to limited human resources, we currently only focus on documents of the Faculty of MMT&amp;TT in general, and the MMT&amp;TTDL industry in particular. ",
+    "content": "The main objective of the project is to help students easily find information and documents about the subject of University of Information technology - VNUHCM, especially to be able to refer to real projects by alumni. We aim for students of all cohorts to be able to transfer and share knowledge with each other through this platform. Due to limited human resources, we currently only focus on documents of the Faculty of Computer Networks and Communications. ",
     "url": "/#objectives",
     
     "relUrl": "/#objectives"
