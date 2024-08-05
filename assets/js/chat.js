@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
+
+  var socket = io('http://34.1.143.90:8080/');
+
+    socket.on('connect', function() {
+        console.log('Connected to Flask server');
+    });
+
+    socket.on('server_response', function(data) {
+        console.log('Received response from server: ' + data.message);
+    });
+
     // Create chat icon
   const chatIcon = document.createElement('div');
   chatIcon.id = 'chat-icon';
@@ -142,7 +153,7 @@ chatbox.style = `
     `;
     chatbox.appendChild(chatMessages);
   
-    // Add a note to the chatbox #FFFFCC
+    // Add a note to the chatbox
     const note = document.createElement('div');
     note.innerText = 'This is a custom LLM for answering questions about SVUIT - MMTT. Answers are based on the contents of the documentation.';
     note.style = `
@@ -254,8 +265,17 @@ chatbox.style = `
   
         chatInput.style.height = '20px';
         adjustChatboxHeight();
+
+        // Send message to server
+        socket.emit('client_event', { data: userMessage });
+        console.log('Message sent to server: ' + userMessage);
   
         // Display AI's response
+
+        socket.on('server_response', function(data) {
+          console.log('Received response from server: ' + data.message);
+        });
+
         const aiMessageElem = document.createElement('div');
         aiMessageElem.style = `
           display: inline-block;
@@ -270,9 +290,8 @@ chatbox.style = `
           word-break: break-word;
           z-index: 1000;
         `;
-        const markdownResponse = `**Tóm tắt mục tiêu khóa học Quản lý thông tin**\n\n**Mục tiêu khóa học:**\n* Hiểu các kiến thức về quy trình tổ chức, biểu diễn và lưu trữ thông tin. \n* Biết, hiểu và vận dụng các kiến thức về các kỹ thuật xử lý thông tin gồm: truy vấn, an toàn và lập trình CSDL. \n* Hiểu và đánh giá được các mô hình CSDL tiên tiến trong thực tế: CSDL hướng đối tượng, CSDL phi quan hệ, và CSDL di động.`;
-        aiMessageElem.innerHTML = marked.parse(markdownResponse);
-        chatMessages.appendChild(aiMessageElem);;
+        aiMessageElem.innerHTML = marked.parse(data.message); // Use server's response here
+        chatMessages.appendChild(aiMessageElem);
   
         const buttonContainer = document.createElement('div');
         buttonContainer.style = `
@@ -319,8 +338,8 @@ chatbox.style = `
         `;
   
         refreshButton.addEventListener('click', function () {
-          // Logic to refresh the AI message
-          aiMessageElem.innerText = 'updated response from AI.';
+          socket.emit('repeat');
+          console.log('User has requested to refresh the AI message');
         });
   
         buttonContainer.appendChild(copyButton);
@@ -406,20 +425,6 @@ chatbox.style = `
     });
   });
 
-//Use Socket.io for listen user close tab
-const socket = io();
-
-socket.on('connect', () => {
-  console.log('Connected:', socket.id);
-});
-
-window.addEventListener('beforeunload', () => {
-  // Gửi tín hiệu đến server
-  socket.emit('user_disconnected', {
-  userId: 'your_user_id', // Thay thế bằng userId thực tế
-  socketId: socket.id
-  });
-});
   
 
 

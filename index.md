@@ -8,7 +8,7 @@ nav_order: 0
 
 {: .fs-9 }
 
-UIT Study Document Vault, Computer Networks and Communications Edition
+UIT Study Vault, Computer Networks and Communications Edition
 
 {: .fs-6 .fw-300 }
 
@@ -17,9 +17,9 @@ UIT Study Document Vault, Computer Networks and Communications Edition
 
 ## Objectives
 
-The main objective of the project is to help students easily find information and documents about the subject, especially to be able to refer to real projects by previous students. We aim for students of all courses to be able to transfer and share knowledge with each other through this platform.
+The main objective of the project is to help students easily find information and documents about the subject of University of Information technology - VNUHCM, especially to be able to refer to real projects by alumni. We aim for students of all cohorts to be able to transfer and share knowledge with each other through this platform.
 
-Due to limited human resources, we currently only focus on documents of the Faculty of MMT&TT in general, and the MMT&TTDL industry in particular.
+Due to limited human resources, we currently only focus on documents of the Faculty of Computer Networks and Communications. 
 
 ## Note
 
