@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Major subjects
+title: Specialized subjects
 nav_order: 1
 has_children: true
 ---
 
-# Major Subjects
+# Specialized Subjects
 
-Major subjects belong to the professional education knowledge block to provide learners with necessary professional knowledge and skills.
+Specialized subjects belong to the professional education knowledge block to provide learners with necessary professional knowledge and skills.
 
-Students majoring in MMT&TTDL need to study at least **12 credits** for major subjects.
+Students majoring in MMT&TTDL need to study at least **12 credits** for Specialized subjects.
