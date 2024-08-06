@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     socket.on('server_response', function(data) {
     console.log('Received response from server: ' + data.message);
     latestServerResponse = data.message;
+    hideLoader();
     displayAIMessage(data.message); // Hiển thị tin nhắn từ AI
   });
 
@@ -184,7 +185,11 @@ chatbox.style = `
       padding: 5px;
       border: 1px solid #523AF0;
       border-radius: 15px;
-      margin: 10px;
+      margin-bottom: 10px;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-top: -7px;
+      z-index: 1000;
     `;
     chatbox.appendChild(chatInputWrapper);
   
@@ -205,6 +210,7 @@ chatbox.style = `
       line-height: 16px;
       max-height: 100px; /* Adjust to fit within container */
       box-sizing: border-box;
+      z-index: 1000;
     `;
     chatInputWrapper.appendChild(chatInput);
     chatInput.placeholder = 'Ask me a question';
@@ -242,6 +248,40 @@ chatbox.style = `
         setTimeout(() => chatInput.focus(), 0); // Focus on input when chatbox opens
       }
     });
+
+    // Function to show loader
+    function showLoader() {
+      const loader = document.createElement('div');
+      loader.id = 'loader';
+      loader.style = `
+        display: inline-block;
+        text-align: left;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+      `;
+  
+      const loaderImg = document.createElement('img');
+      loaderImg.src = '/assets/images/loader.gif';
+      loaderImg.style = `
+        width: 55px;
+        height: 57px;
+      `;
+  
+      loader.appendChild(loaderImg);
+      chatMessages.appendChild(loader);
+      
+      // Scroll to the bottom of chatMessages
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+  // Function to hide loader
+  function hideLoader() {
+    const loader = document.getElementById('loader');
+    if (loader) {
+      loader.remove();
+    }
+  }
   
     // Function to send message
     function sendMessage() {
@@ -271,15 +311,11 @@ chatbox.style = `
         chatInput.style.height = '20px';
         adjustChatboxHeight();
 
+        showLoader();
+
         // Send message to server
         socket.emit('client_event', { data: userMessage });
         console.log('Message sent to server: ' + userMessage);
-  
-        // Display AI's response
-
-        socket.on('server_response', function(data) {
-          console.log('Received response from server: ' + data.message);
-        });
       }
     }
     //////////////////////////////////////////////////////////
@@ -301,6 +337,14 @@ chatbox.style = `
       aiMessageElem.innerHTML = marked.parse(message); // Sử dụng tham số message
     
       chatMessages.appendChild(aiMessageElem);
+      //Background code
+      const codeBlocks = aiMessageElem.querySelectorAll('pre code');
+      codeBlocks.forEach((block) => {
+        block.style.backgroundColor = '#000'; // Light grey background color for code blocks
+        block.style.padding = '10px'; // Padding around the code
+        block.style.borderRadius = '5px'; // Rounded corners
+        block.style.overflowX = 'auto'; // Horizontal scroll for long code lines
+      });
     
       // Tạo container cho các nút
       const buttonContainer = document.createElement('div');
