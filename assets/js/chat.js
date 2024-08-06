@@ -1,14 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  var socket = io('http://34.1.143.90:8080/');
+  var socket = io('http://34.1.143.90:8000/');
 
     socket.on('connect', function() {
         console.log('Connected to Flask server');
     });
 
+    let latestServerResponse = null;
+
+
     socket.on('server_response', function(data) {
-        console.log('Received response from server: ' + data.message);
-    });
+    console.log('Received response from server: ' + data.message);
+    latestServerResponse = data.message;
+    displayAIMessage(data.message); // Hiển thị tin nhắn từ AI
+  });
 
     // Create chat icon
   const chatIcon = document.createElement('div');
@@ -275,91 +280,102 @@ chatbox.style = `
         socket.on('server_response', function(data) {
           console.log('Received response from server: ' + data.message);
         });
-
-        const aiMessageElem = document.createElement('div');
-        aiMessageElem.style = `
-          display: inline-block;
-          max-width: 90%;
-          margin-bottom: 10px;
-          padding: 10px;
-          color: #000;
-          background-color: #D3D3D3;
-          border-radius: 20px;
-          font-size: 15px;
-          text-align: left;
-          word-break: break-word;
-          z-index: 1000;
-        `;
-        aiMessageElem.innerHTML = marked.parse(data.message); // Use server's response here
-        chatMessages.appendChild(aiMessageElem);
-  
-        const buttonContainer = document.createElement('div');
-        buttonContainer.style = `
-          display: flex;
-          gap: 1px;
-          margin-top: 1px;
-          margin-left: 10px;
-          z-index: 1000;
-        `;
-  
-        const copyButton = document.createElement('button');
-        copyButton.innerHTML = '<i class="fa fa-copy"></i>';
-        copyButton.style = `
-          background-color: #e8e8e8;
-          color: #696969;
-          border: none;
-          cursor: pointer;
-          padding: 5px 10px;
-          border-radius: 5px;
-          margin-top: 5px;
-          font-size: 12px;
-          font-family: Arial, sans-serif;
-          margin-left: 5px;
-        `;
-  
-        copyButton.addEventListener('click', function () {
-          const messageToCopy = aiMessageElem.innerText.replace('Copy', '').trim();
-          navigator.clipboard.writeText(messageToCopy)
-        });
-  
-        const refreshButton = document.createElement('button');
-        refreshButton.innerHTML = '<i class="fa fa-refresh"></i>';
-        refreshButton.style = `
-          background-color: #e8e8e8;
-          color: #696969;
-          border: none;
-          cursor: pointer;
-          padding: 5px 10px;
-          border-radius: 5px;
-          margin-top: 5px;
-          font-size: 12px;
-          font-family: Arial, sans-serif;
-          margin-left: 5px;
-        `;
-  
-        refreshButton.addEventListener('click', function () {
-          socket.emit('repeat');
-          console.log('User has requested to refresh the AI message');
-        });
-  
-        buttonContainer.appendChild(copyButton);
-        buttonContainer.appendChild(refreshButton);
-        chatMessages.appendChild(buttonContainer);
-  
-        const separator = document.createElement('hr');
-        separator.style = `
-          border: none;
-          border-top: 1px solid #333; 
-          margin: 10px 0;
-          width: 100%;
-        `;
-        chatMessages.appendChild(separator);
-  
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-  
-        adjustChatboxHeight();
       }
     }
+    //////////////////////////////////////////////////////////
+    function displayAIMessage(message) {
+      const aiMessageElem = document.createElement('div');
+      aiMessageElem.style = `
+        display: inline-block;
+        max-width: 90%;
+        margin-bottom: 10px;
+        padding: 10px;
+        color: #000;
+        background-color: #D3D3D3;
+        border-radius: 20px;
+        font-size: 15px;
+        text-align: left;
+        word-break: break-word;
+        z-index: 1000;
+      `;
+      aiMessageElem.innerHTML = marked.parse(message); // Sử dụng tham số message
+    
+      chatMessages.appendChild(aiMessageElem);
+    
+      // Tạo container cho các nút
+      const buttonContainer = document.createElement('div');
+      buttonContainer.style = `
+        display: flex;
+        gap: 1px;
+        margin-top: 1px;
+        margin-left: 10px;
+        z-index: 1000;
+      `;
+    
+      // Tạo nút sao chép
+      const copyButton = document.createElement('button');
+      copyButton.innerHTML = '<i class="fa fa-copy"></i>';
+      copyButton.style = `
+        background-color: #e8e8e8;
+        color: #696969;
+        border: none;
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-top: 5px;
+        font-size: 12px;
+        font-family: Arial, sans-serif;
+        margin-left: 5px;
+      `;
+    
+      copyButton.addEventListener('click', function () {
+        const messageToCopy = aiMessageElem.innerText.trim(); // Không cần 'Copy'
+        navigator.clipboard.writeText(messageToCopy);
+      });
+    
+      // Tạo nút làm mới
+      const refreshButton = document.createElement('button');
+      refreshButton.innerHTML = '<i class="fa fa-refresh"></i>';
+      refreshButton.style = `
+        background-color: #e8e8e8;
+        color: #696969;
+        border: none;
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-top: 5px;
+        font-size: 12px;
+        font-family: Arial, sans-serif;
+        margin-left: 5px;
+      `;
+    
+      refreshButton.addEventListener('click', function () {
+        socket.emit('repeat');
+        console.log('User has requested to refresh the AI message');
+      });
+    
+      // Thêm các nút vào container và container vào chatMessages
+      buttonContainer.appendChild(copyButton);
+      buttonContainer.appendChild(refreshButton);
+      chatMessages.appendChild(buttonContainer);
+    
+      // Thêm separator
+      const separator = document.createElement('hr');
+      separator.style = `
+        border: none;
+        border-top: 1px solid #333; 
+        margin: 10px 0;
+        width: 100%;
+      `;
+      chatMessages.appendChild(separator);
+    
+      // Cuộn xuống dưới cùng của chatMessages
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    
+      // Điều chỉnh chiều cao của khung chatbox
+      adjustChatboxHeight();
+    }
+    
   
     // Custom scrollbar styling
     const style = document.createElement('style');
