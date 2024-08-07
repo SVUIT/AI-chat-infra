@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-  var socket = io('http://34.1.143.90:8000/');
+  var socket = io('http://34.1.143.90:8888/');
 
     socket.on('connect', function() {
         console.log('Connected to Flask server');
@@ -185,10 +185,7 @@ chatbox.style = `
       padding: 5px;
       border: 1px solid #523AF0;
       border-radius: 15px;
-      margin-bottom: 10px;
-      margin-left: 10px;
-      margin-right: 10px;
-      margin-top: -7px;
+      margin: 10px;
       z-index: 1000;
     `;
     chatbox.appendChild(chatInputWrapper);
@@ -259,13 +256,14 @@ chatbox.style = `
         z-index: 1000;
         display: flex;
         align-items: center;
+        margin-bottom: -20px;
       `;
   
       const loaderImg = document.createElement('img');
       loaderImg.src = '/assets/images/loader.gif';
       loaderImg.style = `
-        width: 55px;
-        height: 57px;
+        width: 60px;
+        height: 62px;
       `;
   
       loader.appendChild(loaderImg);
@@ -402,16 +400,6 @@ chatbox.style = `
       buttonContainer.appendChild(copyButton);
       buttonContainer.appendChild(refreshButton);
       chatMessages.appendChild(buttonContainer);
-    
-      // Thêm separator
-      const separator = document.createElement('hr');
-      separator.style = `
-        border: none;
-        border-top: 1px solid #333; 
-        margin: 10px 0;
-        width: 100%;
-      `;
-      chatMessages.appendChild(separator);
     
       // Cuộn xuống dưới cùng của chatMessages
       chatMessages.scrollTop = chatMessages.scrollHeight;
