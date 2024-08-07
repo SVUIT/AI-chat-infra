@@ -188,7 +188,7 @@ chatbox.style = `
       margin-bottom: 10px;
       margin-left: 10px;
       margin-right: 10px;
-      margin-top: -7px;
+      margin-top: -1px;
       z-index: 1000;
     `;
     chatbox.appendChild(chatInputWrapper);
