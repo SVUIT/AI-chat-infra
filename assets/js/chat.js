@@ -290,6 +290,22 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   
+  function activateButton(button) {
+    // Lưu màu nền và màu chữ hiện tại của nút
+    const originalBackgroundColor = button.style.backgroundColor;
+    const originalColor = button.style.color;
+  
+    // Đặt màu nền và màu chữ khi nút được nhấn
+    button.style.backgroundColor = '#d3d3d3'; // Màu nền khi nhấn
+    button.style.color = '#000'; // Màu chữ khi nhấn
+  
+    // Khôi phục lại màu sắc gốc sau 200ms
+    setTimeout(() => {
+      button.style.backgroundColor = originalBackgroundColor;
+      button.style.color = originalColor;
+    }, 200);
+  }
+
   // Function to send message
   function sendMessage() {
     const userMessage = chatInput.value;
@@ -387,10 +403,29 @@ document.addEventListener("DOMContentLoaded", function () {
       margin-left: 5px;
       `;
     
-    copyButton.addEventListener('click', function () {
-      const messageToCopy = aiMessageElem.innerText.trim();
-      navigator.clipboard.writeText(messageToCopy);
-    });
+      copyButton.addEventListener('click', function () {
+        activateButton(copyButton);
+        const messageToCopy = aiMessageElem.innerText.trim();
+      
+        const textArea = document.createElement('textarea');
+        textArea.value = messageToCopy;
+        textArea.style.position = 'fixed';  
+        textArea.style.opacity = '0';
+        document.body.appendChild(textArea);
+      
+        textArea.select();
+      
+        try {
+            // Thực hiện lệnh copy
+            document.execCommand('copy');
+        } catch (error) {
+            alert('An error occurred while copying. Try again.');
+        }
+      
+        // Loại bỏ textarea sau khi copy xong
+        document.body.removeChild(textArea);
+      });
+      
     
     // Create refresh button
     const refreshButton = document.createElement('button');
@@ -409,6 +444,7 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
     
     refreshButton.addEventListener('click', function () {
+      activateButton(refreshButton);
       showLoader();
       socket.emit('repeat');
       console.log('User has requested to refresh the AI message');
