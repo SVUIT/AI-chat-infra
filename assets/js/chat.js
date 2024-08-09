@@ -10,10 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     socket.on('server_response', function(data) {
-    console.log('Received response from server: ' + data.message);
     latestServerResponse = data.message;
     hideLoader();
-    displayAIMessage(data.message); // Hiển thị tin nhắn từ AI
+    displayAIMessage(data.message);
   });
 
     // Create chat icon
@@ -282,6 +281,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  //Function to hide old refresh button
   function hidePreviousRefreshButtons() {
     const allRefreshButtons = chatMessages.querySelectorAll('button i.fa-refresh');
     allRefreshButtons.forEach(button => {
@@ -290,16 +290,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   
+
+  //Function to activate button
   function activateButton(button) {
-    // Lưu màu nền và màu chữ hiện tại của nút
     const originalBackgroundColor = button.style.backgroundColor;
     const originalColor = button.style.color;
   
-    // Đặt màu nền và màu chữ khi nút được nhấn
-    button.style.backgroundColor = '#d3d3d3'; // Màu nền khi nhấn
-    button.style.color = '#000'; // Màu chữ khi nhấn
+    button.style.backgroundColor = '#d3d3d3'; 
+    button.style.color = '#000';
   
-    // Khôi phục lại màu sắc gốc sau 200ms
     setTimeout(() => {
       button.style.backgroundColor = originalBackgroundColor;
       button.style.color = originalColor;
@@ -338,7 +337,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Send message to server
       socket.emit('client_event', { data: userMessage });
-      console.log('Message sent to server: ' + userMessage);
     }
   }
     
@@ -416,13 +414,11 @@ document.addEventListener("DOMContentLoaded", function () {
         textArea.select();
       
         try {
-            // Thực hiện lệnh copy
             document.execCommand('copy');
         } catch (error) {
             alert('An error occurred while copying. Try again.');
         }
-      
-        // Loại bỏ textarea sau khi copy xong
+    
         document.body.removeChild(textArea);
       });
       
@@ -447,7 +443,6 @@ document.addEventListener("DOMContentLoaded", function () {
       activateButton(refreshButton);
       showLoader();
       socket.emit('repeat');
-      console.log('User has requested to refresh the AI message');
     });
     
     buttonContainer.appendChild(copyButton);
@@ -457,13 +452,13 @@ document.addEventListener("DOMContentLoaded", function () {
    // Thêm separator visibility: hidden;
    const separator = document.createElement('hr');
    separator.style =`
-     border: none;
-     border-top: 1px solid #333; 
-     margin-top: 10px;
-     margin-bottom: 0px;
-     width: 100%;
+    border: none;
+    border-top: 1px solid #333; 
+    margin-top: 10px;
+    margin-bottom: 0px;
+    width: 100%;
     visibility: hidden;
-   `;
+    `;
    chatMessages.appendChild(separator);
     
     chatMessages.scrollTop = chatMessages.scrollHeight;
