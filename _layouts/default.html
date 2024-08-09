@@ -9,30 +9,6 @@ layout: table_wrappers
 <head>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js"></script>
-<!--<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        var socket = io('http://34.1.143.90:9000/');
-
-        socket.on('connect', function() {
-            console.log('Connected to Flask server');
-        });
-
-        socket.on('server_response', function(data) {
-            console.log('Received response from server: ' + data.message);
-        });
-
-        document.getElementById('sendButton').addEventListener('click', function() {
-            var message = document.getElementById('messageInput').value;
-            socket.emit('client_event', {data: message});
-            console.log('Message sent: ' + message);
-        });
-
-        window.addEventListener('beforeunload', function (event) {
-            socket.emit('client_disconnect', {message: 'User has closed the tab'});
-            console.log('User is closing the tab');
-        });
-    });
-</script> -->
 </head>
 <body>
   <a class="skip-to-main" href="#main-content">Skip to main content</a>
